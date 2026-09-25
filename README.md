@@ -20,7 +20,6 @@ A production-grade, enterprise-architected RESTful microservice built with **Spr
 7. [Running the Application](#7-running-the-application)
 8. [Docker & Containerization](#8-docker--containerization)
 9. [Automated Testing Strategy](#9-automated-testing-strategy)
-10. [Tech Lead Engineering Decisions](#10-tech-lead-engineering-decisions)
 
 ---
 
@@ -371,11 +370,3 @@ A comprehensive testing pyramid has been implemented:
 All 24 test cases execute and pass with 100% success rate!
 
 ---
-
-## 10. Tech Lead Engineering Decisions
-
-1. **Java Records for DTOs**: Request and Response models are defined as Java `record`s. Records provide immutability, thread-safety, zero boilerplate, and transparent data carrier semantics.
-2. **Decoupled Architecture with Service Interfaces**: Controllers depend strictly on `EmployeeService` interface rather than concrete classes, facilitating dependency inversion, maintainability, and clean mocking in tests.
-3. **Constructor-based Dependency Injection**: All dependencies are injected via constructors (eliminating `@Autowired` field injection), ensuring immutability (`final` fields) and easy instantiation in unit tests.
-4. **Isolated Auditing Configuration**: `@EnableJpaAuditing` is placed in `JpaAuditingConfig` rather than the main application class. This prevents `@WebMvcTest` slice tests from unnecessarily loading JPA infrastructure.
-5. **Standardized Error Representation**: Centralized exception handler guarantees that the API contract remains predictable even during unexpected failures.
